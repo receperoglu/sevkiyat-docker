@@ -1,0 +1,42 @@
+{
+  "homepage": "https://receperoglu.github.io/public",
+  "name": "sevkreactyeni",
+  "version": "0.1.0",
+  "private": true,
+  "vercell": "CI= npm run build",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "js-cookie": "^2.2.1",
+    "moment": "^2.29.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^1.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && mv ../www/public/css ../www/public/css_old && mv ../www/public/static ../www/public/static_old && mv build/* ../www/public/",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}

@@ -1,0 +1,18 @@
+ [Wed Jun 19 08:23:21.655972 2024] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Jun 19 08:23:23.068265 2024] [ssl:warn] [pid 1] AH01882: Init: this version of mod_ssl was compiled against a newer library (OpenSSL 3.0.13 30 Jan 2024 (OpenSSL 3.0.11 19 Sep 2023), version currently loaded is 0x300000B0) - may result in undefined or erroneous behavior
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.5. Set the 'ServerName' directive globally to suppress this message
+[Wed Jun 19 08:23:23.102410 2024] [ssl:warn] [pid 1] AH01882: Init: this version of mod_ssl was compiled against a newer library (OpenSSL 3.0.13 30 Jan 2024 (OpenSSL 3.0.11 19 Sep 2023), version currently loaded is 0x300000B0) - may result in undefined or erroneous behavior
+[Wed Jun 19 08:23:23.104669 2024] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.59 (Debian) PHP/8.3.8 OpenSSL/3.0.11 configured -- resuming normal operations
+[Wed Jun 19 08:23:23.105002 2024] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Jun 19 08:24:31.712778 2024] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Jun 19 08:27:05.677731 2024] [ssl:warn] [pid 1] AH01882: Init: this version of mod_ssl was compiled against a newer library (OpenSSL 3.0.13 30 Jan 2024 (OpenSSL 3.0.11 19 Sep 2023), version currently loaded is 0x300000B0) - may result in undefined or erroneous behavior
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.5. Set the 'ServerName' directive globally to suppress this message
+[Wed Jun 19 08:27:05.697294 2024] [ssl:warn] [pid 1] AH01882: Init: this version of mod_ssl was compiled against a newer library (OpenSSL 3.0.13 30 Jan 2024 (OpenSSL 3.0.11 19 Sep 2023), version currently loaded is 0x300000B0) - may result in undefined or erroneous behavior
+[Wed Jun 19 08:27:05.699049 2024] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.59 (Debian) PHP/8.3.8 OpenSSL/3.0.11 configured -- resuming normal operations
+[Wed Jun 19 08:27:05.699155 2024] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Jun 19 08:38:31.229988 2024] [core:error] [pid 31] [client 192.168.65.1:26055] AH10244: invalid URI path (/public/%PUBLIC_URL%/manifest.json), referer: http://localhost/public/index.html
+[Wed Jun 19 08:38:53.408581 2024] [core:error] [pid 21] [client 192.168.65.1:21534] AH10244: invalid URI path (/public/%PUBLIC_URL%/manifest.json), referer: http://localhost/public/index.html
+[Wed Jun 19 08:39:02.490043 2024] [core:error] [pid 22] [client 192.168.65.1:43637] AH10244: invalid URI path (/public/%PUBLIC_URL%/manifest.json), referer: http://localhost/public/index.html
+[Wed Jun 19 08:39:05.264465 2024] [core:error] [pid 21] [client 192.168.65.1:25096] AH10244: invalid URI path (/public/%PUBLIC_URL%/manifest.json), referer: http://localhost/public/index.html
+[Wed Jun 19 08:39:15.621051 2024] [core:error] [pid 50] [client 192.168.65.1:17192] AH10244: invalid URI path (/public/%PUBLIC_URL%/manifest.json), referer: http://localhost/public/index.html
+[Wed Jun 19 08:41:35.795079 2024] [core:error] [pid 17] [client 192.168.65.1:41798] AH10244: invalid URI path (/public/%PUBLIC_URL%/manifest.json), referer: http://localhost/public/index.html

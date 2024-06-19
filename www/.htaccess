@@ -1,0 +1,9 @@
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^((?!base64/)(?!service/)([a-zA-Z0-9-\/_]+))$ index.html [QSA]
+RewriteRule ^service/([0-9\w]+)/([0-9\w]+)$ service/index.php?sb=$1&rq=$2 [QSA]
+RewriteRule ^base64/([0-9\w\.-]+)$ service/base64.php?file=$1 [NC]
+
+ 
