@@ -1,8 +1,9 @@
 import React from "react";
 import CancelBtn from "./../Tools/CancelBtn";
-import SevkConsumer from "../../store/context";
+import { useSevk } from "../../store/context";
 import CreateIcon from "../Tools/CreateIcon";
 import { Url } from "../../components/Tools/Urls";
+
 function Rotate() {
   return (
     <span className="hover-dropdown">
@@ -17,6 +18,7 @@ function Rotate() {
     </span>
   );
 }
+
 function Btn(text, url, icon) {
   return (
     <span>
@@ -36,6 +38,7 @@ function Btn(text, url, icon) {
     </span>
   );
 }
+
 function RightBar(ArticelName, Path, hidePicturePreview) {
   return (
     <div className="resources-action-bar__side-right">
@@ -74,41 +77,34 @@ function RightBar(ArticelName, Path, hidePicturePreview) {
     </div>
   );
 }
+
 export default function PicturePreview() {
-  return (
-    <SevkConsumer>
-      {(value) => {
-        const { ShowPicturePreview, Path, ArticelName, File, dispatch } = value;
-        const hidePicturePreview = () => {
-          dispatch({
-            type: "hidePicturePreview",
-            payload: null,
-          });
-        };
-        return ShowPicturePreview ? (
-          <div className="ma5-imgbox PicturePreview">
-            <img
-              id="FullScreen"
-              src={Url + File.Path}
-              width="100"
-              alt="Resim"
-            />
-            <div className="resources-action-bar">
-              <div className="resources-action-bar__body">
-                <div className="resources-action-bar__side-left">
-                  <div className="resources-info-dropdown">
-                    <CreateIcon symbol="" iconname="Info" />
-                    <div className="resources-info-dropdown__text-wrap">
-                      <span className="clamped-text">{ArticelName}</span>
-                    </div>
-                  </div>
-                </div>
-                {RightBar(ArticelName, Path, hidePicturePreview)}
+  const { state, dispatch } = useSevk();
+  const { ShowPicturePreview, Path, ArticelName, File } = state;
+
+  const hidePicturePreview = () => {
+    dispatch({
+      type: "hidePicturePreview",
+      payload: null,
+    });
+  };
+
+  return ShowPicturePreview ? (
+    <div className="ma5-imgbox PicturePreview">
+      <img id="FullScreen" src={Url + File.Path} width="100" alt="Resim" />
+      <div className="resources-action-bar">
+        <div className="resources-action-bar__body">
+          <div className="resources-action-bar__side-left">
+            <div className="resources-info-dropdown">
+              <CreateIcon symbol="" iconname="Info" />
+              <div className="resources-info-dropdown__text-wrap">
+                <span className="clamped-text">{ArticelName}</span>
               </div>
             </div>
           </div>
-        ) : null;
-      }}
-    </SevkConsumer>
-  );
+          {RightBar(ArticelName, Path, hidePicturePreview)}
+        </div>
+      </div>
+    </div>
+  ) : null;
 }

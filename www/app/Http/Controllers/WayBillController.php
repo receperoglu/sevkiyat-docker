@@ -6,6 +6,9 @@ use App\Models\WayBill;
 use Illuminate\Http\Request;
 use Response;
 use DB;
+use App\Models\OrderDetail;
+
+
 class WayBillController extends Controller
 {
     /**
@@ -18,42 +21,43 @@ class WayBillController extends Controller
 
     public function waybill($id)
     {
-      return WayBill::where("OrderId",$id);
+        return WayBill::where("OrderId", $id);
     }
 
 
 
     public function multimotion($id)
     {
-       $waybill= WayBill::where("ArticelId",$id)->get();
-      return Response::json($waybill);
+        $waybill = WayBill::where("ArticelId", $id)->get();
+        return Response::json($waybill);
 
     }
 
     public function onemotion($id)
     {
-       $waybill= WayBill::where("OrderId",$id)->get();
-      return Response::json($waybill);
+        $waybill = WayBill::where("OrderId", $id)->get();
+        return Response::json($waybill);
 
     }
 
+
+
     public function ShipmentSave(Request $request)
     {
-        $datas= json_decode($request->getContent());
+        $datas = json_decode($request->getContent());
 
-        foreach($datas->data as $item)
-        {
-
+        foreach ($datas->data as $item) {
+            $activeOrder = OrderDetail::find($item->id);
             $shipment = new WayBill();
+            $shipment->ArticelId = $datas->ArticelId;
             $shipment->waybillId = $datas->waybillid;
-            $shipment->CorpId=$item->CorpId;
-            $shipment->Weight=$item->Weight;
-            $shipment->SendEdPiece=$item->Piece;
-            $shipment->OrderId=$item->id;
-            $shipment->ArticelId=$item->ArticelId;
-            $shipment->Dimensions=$item->Dimensions;
-            $shipment->Color=$item->Color;
-            $shipment->ProductTypeName=$item->ProductTypeName;
+            $shipment->CorpId = $datas->CorpId;
+            $shipment->Weight = $item->Weight;
+            $shipment->SendEdPiece = $item->Piece;
+            $shipment->OrderId = $item->id;
+            $shipment->Dimensions = $activeOrder->Dimensions;
+            $shipment->Color = $activeOrder->Color;
+            $shipment->ProductTypeName = $activeOrder->ProductTypeName;
             $shipment->save();
 
         }
@@ -70,17 +74,17 @@ class WayBillController extends Controller
     public function waybillphotosave(Request $request)
     {
 
-       // DB::select('select * from waybillphoto where WayBillId = ?', [$request->WayBillId]);
+        // DB::select('select * from waybillphoto where WayBillId = ?', [$request->WayBillId]);
 
         $file = $request->file('file');
         $articelId = $request->ArticelId;
         $WayBillId = $request->WayBillId;
         $ext = $file->extension();
         $name = $file->getClientOriginalName();
-        $dosyaAdi = "waybill".time().'_'.str_replace(" ", "",$name);
+        $dosyaAdi = "waybill" . time() . '_' . str_replace(" ", "", $name);
         $file->move(public_path('files'), $dosyaAdi);
         $dosyaYolu = 'files/' . $dosyaAdi;
-        DB::insert('insert into waybillphoto (WayBillId	, ArticelId,path) values ('.$WayBillId.', '. $articelId.', "'.$dosyaYolu.'")');
+        DB::insert('insert into waybillphoto (WayBillId	, ArticelId,path) values (' . $WayBillId . ', ' . $articelId . ', "' . $dosyaYolu . '")');
         return response()->json(['path' => $dosyaAdi]);
     }
 

@@ -1,6 +1,5 @@
 export const FetchFunc = async (Url) => {
   // Url = "http:/localhost:8000/" + Url
-  console.log(Url);
   var response = "";
   try {
     response = await fetch(Url, {
