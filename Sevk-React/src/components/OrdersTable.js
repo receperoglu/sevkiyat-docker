@@ -5,6 +5,8 @@ import FilesComponent from "./ComponentFiles/ComponentFiles";
 import WayBillList from "./WayBillList";
 import CreateIcon from "./Tools/CreateIcon";
 import Skeleton from "./Tools/Skeleton";
+import { useOrder } from "../store/OrderContext";
+import { useWayBill } from "../store/WayBillContext";
 
 function TableHead() {
   return (
@@ -26,8 +28,13 @@ export default function OrdersTable() {
     setOrderVisible(!OrderVisible);
   };
 
-  const { dispatch, state, CallOutonMouseMove } = useSevk();
-  const { Orders, DetailActive, ArticelName, isMobile, Loading } = state;
+  const { dispatch, state } = useSevk();
+  const { DetailActive, ArticelName, isMobile, Loading } = state;
+
+  const { OrderState } = useOrder();
+  const { Orders } = OrderState;
+
+  const { CallOutonMouseMove } = useWayBill();
 
 
 

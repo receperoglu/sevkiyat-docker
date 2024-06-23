@@ -3,6 +3,7 @@ import HeadSection from "./Layout/HeadSection";
 import { useSevk } from "../store/context";
 import moment from "moment/moment";
 import Skeleton from "./Tools/Skeleton";
+import { useWayBill } from "../store/WayBillContext";
 
 function TableHead() {
   return (
@@ -25,7 +26,10 @@ export default function WayBillList() {
   };
 
   const { dispatch, state } = useSevk();
-  const { isMobile, Waybill, Loading } = state;
+  const { isMobile, Loading } = state;
+
+  const { WayBillState } = useWayBill();
+  const { WayBills } = WayBillState;
 
 
   const GetWayBillPhoto = (Path) => {
@@ -46,7 +50,7 @@ export default function WayBillList() {
         <table className="table table-hover">
           <TableHead />
           <tbody aria-live="polite">
-            {Waybill.map((w) => (
+            {WayBills && WayBills.map((w) => (
               <tr key={w.id}>
                 <td>{w.SendEdPiece}</td>
                 <td>{w.Weight}</td>
@@ -63,7 +67,7 @@ export default function WayBillList() {
                 </td>
               </tr>
             ))}
-            {Loading && Waybill.length === 0 && (
+            {Loading && WayBills.length === 0 && (
               <Skeleton icons={[{ order: 6, icon: "photo" }]} rowCount="5" columnCount="6" />
             )}
           </tbody>

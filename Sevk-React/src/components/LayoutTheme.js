@@ -1,13 +1,14 @@
 import React from "react";
 import LayoutHead from "./Layout/LayoutHead";
-import { useSevk } from "../store/context";
+import { useTheme } from "../store/themeContext";
 
 export default function LayoutTheme() {
-  const { state, dispatch, changeTheme } = useSevk();
-  const { ShowLayoutTheme } = state;
+  const { stateTheme, dispatchTheme, changeTheme } = useTheme();
+
+  const { ShowLayoutTheme } = stateTheme;
 
   const toggleTheme = () => {
-    dispatch({
+    dispatchTheme({
       type: "toggleTheme",
       payload: false,
     });

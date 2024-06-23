@@ -5,6 +5,7 @@ import { useSevk } from "../../store/context";
 import GridView from "./GridView";
 import ListViewBody from "./ListViewBody";
 import ListViewHeader from "./ListViewHeader";
+import { useFiles } from "../../store/FilesContext";
 
 export default function ComponentFiles() {
   const [FilesVisible, setFilesVisible] = useState(true);
@@ -13,12 +14,15 @@ export default function ComponentFiles() {
   };
 
 
-  const { dispatch, state } = useSevk();
-  const { Files, Vtype, Loading } = state;
+  const { state } = useSevk();
+  const { Loading } = state;
+
+  const { FilesState, FilesDispatch } = useFiles();
+  const { Files, Vtype } = FilesState;
 
 
   const toggleVtype = () => {
-    dispatch({ type: "toggleVtype", payload: null });
+    FilesDispatch({ type: "toggleVtype", payload: null });
   };
 
   return (

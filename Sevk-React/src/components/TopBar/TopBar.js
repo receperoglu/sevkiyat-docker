@@ -2,10 +2,20 @@ import React, { Fragment } from "react";
 import LeftNav from "./LeftNav";
 import Menus from "./Menus";
 import { useSevk } from "../../store/context"; // Import the useSevk hook
+import { useTheme } from "../../store/themeContext";
+import { useArticel } from "../../store/ArticelContext";
+import ProgressBar from "../Tools/ProgressBar";
 
 export default function TopBar() {
   const { state, dispatch } = useSevk(); // Use the useSevk hook to get state and dispatch
-  const { ShowTopBar, Loading, Articels } = state; // Extract state variables
+  const { ShowTopBar, Loading } = state; // Extract state variables
+
+
+  const { dispatchTheme } = useTheme();
+
+  const { articelState, searchArticel } = useArticel();
+  const { Articels } = articelState;
+
 
   const ToggleMenu = () => {
     dispatch({ type: "ToggleMenu", payload: true });
@@ -16,11 +26,11 @@ export default function TopBar() {
   };
 
   const Search = (e) => {
-    dispatch({ type: "Search", payload: e });
+    searchArticel(e);
   };
 
   const toggleTheme = () => {
-    dispatch({ type: "toggleTheme", payload: null });
+    dispatchTheme({ type: "toggleTheme", payload: null });
   };
 
   return (
@@ -86,6 +96,7 @@ export default function TopBar() {
                   onChange={(e) => Search(e.target.value)}
                   placeholder="Her şeyi ara"
                 />
+                <ProgressBar isVisible={Loading}></ProgressBar>
                 <div
                   className={
                     !Loading && Articels.length === 0

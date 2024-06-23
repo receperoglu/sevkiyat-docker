@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Download from "./Download";
 import ListImage from "./ListImage";
-import { useSevk } from "../../store/context"; // Import the useSevk hook
 import moment from "moment";
+import { useFiles } from "../../store/FilesContext";
 
 export default function ListViewBody() {
-  const { state } = useSevk(); // Use the useSevk hook to get state
-  const { Files } = state; // Destructure Files from the state
+
+  const { FilesState } = useFiles();
+  const { Files } = FilesState;
+
 
   return (
     Files.map((File) => (

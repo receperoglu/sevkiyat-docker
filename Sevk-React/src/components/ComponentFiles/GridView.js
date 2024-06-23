@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSevk } from "../../store/context"; // Import the useSevk hook
 import { ico, Thumb } from "./../Tools/Urls";
 import Download from "./Download";
 import moment from "moment";
+import { useFiles } from "../../store/FilesContext";
 
 function Grid(Delete, hideDelete, showDelete, F, showPreview, url, Type) {
   return (
@@ -37,8 +38,13 @@ function Grid(Delete, hideDelete, showDelete, F, showPreview, url, Type) {
 }
 
 export default function GridView() {
-  const { state, dispatch } = useSevk(); // Use the useSevk hook to get state and dispatch
-  const { Files, Loading } = state; // Extract state variables
+  const { state, dispatch } = useSevk();
+  const { Loading } = state;
+
+  const { FilesState } = useFiles();
+  const { Files } = FilesState;
+
+
 
   const showDelete = (identity) => {
     let id = "Delete" + identity;
@@ -69,7 +75,7 @@ export default function GridView() {
   return (
     <div className="col-md-12">
       {Loading && Files.length === 0 && gridDivSkeleton()}
-      {Files.map((F) => (
+      {Files && Files.map((F) => (
         <div key={F.Id} className="col-md-3 col-lg-2 col-xs-4 padd0">
           {F.Type === "Picture"
             ? Grid(

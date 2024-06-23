@@ -5,6 +5,8 @@
   "private": true,
   "vercell": "CI= npm run build",
   "dependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "cors": "^2.8.5",
     "js-cookie": "^2.2.1",
     "moment": "^2.29.4",

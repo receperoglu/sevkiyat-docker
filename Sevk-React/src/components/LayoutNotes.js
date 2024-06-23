@@ -3,25 +3,22 @@ import LayoutHead from "./Layout/LayoutHead";
 import { useSevk } from "../store/context"; // Import the useSevk hook
 import BlueButton from "./Tools/BlueButton";
 import ProgressBar from "./Tools/ProgressBar";
+import { useNotes } from "../store/NoteContext";
 
 export default function LayoutNotes() {
-  const { dispatch, state } = useSevk(); // Use the useSevk hook to get context values
-  const { Loading, ShowLayoutNote, ArticelNotes, } = state
+  const { dispatch, state } = useSevk();
+  const { Loading, ShowLayoutNote } = state
+
+  const { NotesDispatch, NotesState, SaveNotes } = useNotes();
+  const { ArticelNotes } = NotesState;
 
   const UpdateArticelNote = (e) => {
-    dispatch({ type: "UpdateArticelNote", payload: e.target.value });
+    NotesDispatch({ type: "setNotes", payload: e.target.value });
   };
 
   const toggleNote = () => {
     dispatch({
       type: "toggleNote",
-      payload: false,
-    });
-  };
-
-  const SaveNotes = () => {
-    dispatch({
-      type: "SaveNotes",
       payload: false,
     });
   };
